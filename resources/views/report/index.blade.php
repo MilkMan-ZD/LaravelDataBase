@@ -19,12 +19,21 @@
         </div>
     </nav>
     <div class="max-w-7xl mx-auto">
-        <a href="{{ route('reports.create') }}">Создать заявление</a>
-    </div>
-    <div>
         <span>Сортировка по дате создания: </span>
-        <a href="{{ route('reports.index', ['sort'=>'desc']) }}">сначала новые</a>
-        <a href="{{ route('reports.index', ['sort'=>'asc']) }}">сначала старые</a>
+        <a href="{{route('report.index', ['sort' => 'desc', 'status' => $status])}}">сначало новые</a>
+        <a href="{{route('report.index', ['sort' => 'asc', 'status' => $status])}}">сначало старые</a>
+    </div>
+    <div class="max-w-7xl mx-auto">
+        <p>Фильтрация по статусу заявки</p>
+        <ul>
+            @foreach ($statuses as $status)
+                <li>
+                    <a href="{{route('report.index', ['sort' => $sort, 'status' => $status->id])}}">
+                        {{$status->name}}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
     </div>
     <div class="max-w-7xl mx-auto grid grid-cols-3 gap-4 p-4">
         @foreach ($reports as $report)
@@ -50,12 +59,19 @@
                     <input class="text-red-600" type="submit" value="Удалить">
                 </form>
             </div>
+            <div>
+                <form action="POST" action="{{route('reports.update', $report->id)}}">
+                    @csrf
+                    @method('put')
+                    <input class="text-red-600" type="submit" value="Обновить">
+                </form>
+            </div>
         </div>
         @endforeach
-        {{$reports->links()}}
+        {{$reports->appends(request()->query())->links()}}
     </div>
     <div class="max-w-7xl mx-auto px-4 p-4">
-        <a href="/reports" class="inline-block px-6 py-2 bg-red-600 text-white rounded-md text-lg">
+        <a href="{{ route('reports.create') }}" class="inline-block px-6 py-2 bg-red-600 text-white rounded-md text-lg">
             Создать заявление
         </a>
     </div>

@@ -8,12 +8,21 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-[#DDE8FF]">
+    <nav class="bg-white">
+        <div class="max-w-7xl mx-auto px-4 py-5 flex justify-between items-center">
+            <a href="/reports" class="font-bold">
+                <span class="text-blue-600 text-3xl">НАРУШЕНИЙ</span>
+                <span class="text-red-600 text-3xl">.НЕТ</span>
+            </a>
+            <p class="">Имя пользователя</p>
+        </div>
+    </nav>
     <div class="max-w-7xl mx-auto">
         <a href="{{ route('report.index') }}">На главную</a>
     </div>
-    <div>
-        <form method="post" action="{{route('reports.update', ['report'=>$report])}}" >
+    <div class="max-w-7xl mx-auto">
+        <form method="post" action="{{route('reports.update', ['report'=>$report->id])}}" >
             @csrf
             @method('put')
             <div>
