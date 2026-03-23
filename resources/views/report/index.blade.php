@@ -60,15 +60,17 @@
                 </form>
             </div>
             <div>
-                <form action="POST" action="{{route('reports.update', $report->id)}}">
+                 <form method="POST" action="{{route('reports.edit', $report->id)}}">
                     @csrf
-                    @method('put')
-                    <input class="text-red-600" type="submit" value="Обновить">
+                    @method('get')
+                    <input class="text-blue-600" type="submit" value="Редактировать">
                 </form>
             </div>
         </div>
         @endforeach
-        {{$reports->appends(request()->query())->links()}}
+    </div>
+    <div class="max-w-7xl mx-auto">
+        {{ $reports->appends(request()->query())->links() }}
     </div>
     <div class="max-w-7xl mx-auto px-4 p-4">
         <a href="{{ route('reports.create') }}" class="inline-block px-6 py-2 bg-red-600 text-white rounded-md text-lg">

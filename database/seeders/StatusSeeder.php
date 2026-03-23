@@ -14,7 +14,7 @@ class StatusSeeder extends Seeder
             [
                 ['name' => "новое"],
                 ['name' => "подтверждено"],
-                ['name' => "отключено"]
+                ['name' => "отклонено"]
             ]
         );
     }

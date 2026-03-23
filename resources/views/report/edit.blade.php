@@ -26,12 +26,13 @@
             @csrf
             @method('put')
             <div>
-                <input type="text" class="mb-8 border border-blue-600 rounded-lg px-3 py-1 w-62 bg-white  placeholder-gray-400 text-left"
-                    maxlength="6" placeholder="Номер авто">
+                <input type="text" name="number" id="number" class="mb-8 border border-blue-600 rounded-lg px-3 py-1 w-62 bg-white  placeholder-gray-400 text-left"
+                maxlength="10" placeholder="Номер авто" value="{{ old('number', $report->number) }}">
             </div>
             <div>
-                <input type="text" class="mb-8 h-50 text-top border border-blue-600 rounded-lg px-3 w-150 bg-white  placeholder-gray-400 text-left"
-                    placeholder="описание заявки">
+                <textarea name="description" 
+                class="mb-8 h-50 w-full border border-blue-600 rounded-lg px-3 w-full bg-white placeholder-gray-400 text-left"
+                placeholder="описание нарушения">{{ old('description', $report->description) }}</textarea>
             </div>
             <div>
                 <button type="submit" class="inline-block px-6 py-2 bg-red-600 text-white rounded-md text-lg">
