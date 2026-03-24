@@ -18,8 +18,18 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    const ADMIN_ROLE = 'admin';
+    public function isAdmin(){
+        return $this->role === self::ADMIN_ROLE;
+    }
+
     protected $fillable = [
         'name',
+        'middlename',
+        'lastname',
+        'login',
+        'tel',
         'email',
         'password',
     ];

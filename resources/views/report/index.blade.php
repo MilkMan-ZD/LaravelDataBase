@@ -18,6 +18,9 @@
             <p class="">Имя пользователя</p>
         </div>
     </nav>
+    <x-app-layout>
+        <h1>Административная панель</h1>
+    </x-app-layout>
     <div class="max-w-7xl mx-auto">
         <span>Сортировка по дате создания: </span>
         <a href="{{route('report.index', ['sort' => 'desc', 'status' => $status])}}">сначало новые</a>
@@ -27,11 +30,11 @@
         <p>Фильтрация по статусу заявки</p>
         <ul>
             @foreach ($statuses as $status)
-                <li>
-                    <a href="{{route('report.index', ['sort' => $sort, 'status' => $status->id])}}">
-                        {{$status->name}}
-                    </a>
-                </li>
+            <li>
+                <a href="{{route('report.index', ['sort' => $sort, 'status' => $status->id])}}">
+                    {{$status->name}}
+                </a>
+            </li>
             @endforeach
         </ul>
     </div>
@@ -60,7 +63,7 @@
                 </form>
             </div>
             <div>
-                 <form method="POST" action="{{route('reports.edit', $report->id)}}">
+                <form method="POST" action="{{route('reports.edit', $report->id)}}">
                     @csrf
                     @method('get')
                     <input class="text-blue-600" type="submit" value="Редактировать">
