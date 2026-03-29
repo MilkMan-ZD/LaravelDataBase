@@ -13,7 +13,6 @@ class AdminController extends Controller
         $reports = Report::all();
         $statuses = Status::all();
 
-        // Передаем переменные в представление с помощью compact
-        return view('admin.index', compact('reports', 'statuses')); //здесь по заданию написано что должно быть admin.index
+        return view('admin.index', compact('reports', 'statuses'));
     }
 }
